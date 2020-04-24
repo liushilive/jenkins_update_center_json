@@ -11,7 +11,7 @@ else:
 
 setup(
     name='jcu',
-    version='0.2',
+    version='0.3',
     description="jcu",
     long_description=open('README.md', 'r', encoding="utf-8").read(),
     long_description_content_type="text/markdown",

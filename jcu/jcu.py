@@ -100,11 +100,19 @@ def main():
     uc = JenkinsUpdateCenter()
     uc.load_private(private_key)
     uc.load_public(public_key)
-    uc.plugins = json.loads(json.dumps(original["plugins"]).replace("http://updates.jenkins-ci.org/download/plugins/",
-                                                                    www_url + "/plugins/"))
+    uc.plugins = json.loads(
+        json.dumps(original["plugins"])
+            .replace("http://updates.jenkins-ci.org/download/plugins/", www_url + "/plugins/")
+            .replace("https://plugins.jenkins.io", www_url)
+            .replace("https://jenkins.io", www_url)
+    )
     uc.warnings = original["warnings"]
     uc.core = json.loads(
-        json.dumps(original["core"]).replace("http://updates.jenkins-ci.org/download/war/", www_url + "/war/"))
+        json.dumps(original["core"])
+            .replace("http://updates.jenkins-ci.org/download/war/", www_url + "/war/")
+            .replace("https://plugins.jenkins.io", www_url)
+            .replace("https://jenkins.io", www_url)
+    )
     with open(www_root + "/update-center.json", "w") as fd:
         uc.out(fd)
 
