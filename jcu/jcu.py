@@ -1,3 +1,4 @@
+import argparse
 import base64
 import binascii
 import json
@@ -87,11 +88,17 @@ class JenkinsUpdateCenter:
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-ip", dest="ip", help="ip", default="192.168.2.251", required=False)
+    args = parser.parse_args()
+    ip = args.ip
+
     www_root = "/YUM/jenkins/"
-    original_update_center_json = "update-center.json"
-    www_url = "http://192.168.2.251:81/jenkins"
+    original_update_center_json = "update-center-old.json"
+    www_url = f"http://{ip}:81/jenkins"
     private_key = "update-center.key"
     public_key = "update-center.der"
+    print(www_url)
 
     # Load original update center
     with open(www_root + original_update_center_json, "r", encoding="utf-8") as fd:
@@ -115,7 +122,3 @@ def main():
     )
     with open(www_root + "/update-center.json", "w") as fd:
         uc.out(fd)
-
-
-if __name__ == '__main__':
-    main()
