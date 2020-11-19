@@ -3,7 +3,7 @@
 import sys
 
 if sys.version_info < (3, 8):
-    print(u"The minimum support Python 3.7\n支持最低版本 3.8")
+    print(u"The minimum support Python 3.8\n支持最低版本 3.8")
     exit(1)
 else:
     from setuptools import find_packages
@@ -11,7 +11,7 @@ else:
 
 setup(
     name='jcu',
-    version='1.1',
+    version='1.2',
     description="jcu",
     long_description=open('README.md', 'r', encoding="utf-8").read(),
     long_description_content_type="text/markdown",
